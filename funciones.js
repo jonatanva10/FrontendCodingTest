@@ -188,6 +188,44 @@ function crearTabla(filas, columnas, fecha, dias,pais){
 	}
 }
 
+function getWebService(paramPais, paramAnno, paramMes) {
+	var response = "";
+	var feriados = ""; 
+	var pais = "CR";
+	var anno = "2014";
+	var mes = "08";
+	var url = "https://holidayapi.com/v1/holidays?key=987767f3-2678-41bb-b09e-c57d37ecbe6e&country="+paramPais+"&year="+paramAnno+"&month="+paramMes;
+    var xhttp = new XMLHttpRequest();
+    // xhttp.open("GET", "https://holidayapi.com/v1/holidays?key=987767f3-2678-41bb-b09e-c57d37ecbe6e&country=CR&year=2014&month=08");
+	xhttp.open("GET", url, true);
+    // xhttp.setRequestHeader("Content-type", "application/json");
+	// console.log("TEst WS: " + xhttp.readyState());
+    xhttp.send();
+	 if(xhttp.readyState == 4 && xhttp.status == 200) {
+        response = JSON.parse(xhttp.responseText);
+		console.log("Respuesta: " + response);
+    }else{
+		// alert(xhttp.readyState); // 1
+		alert(xhttp.status); // 0
+		// if(xhttp.status == "0"){
+	    response = JSON.parse(xhttp.responseText);
+		
+		// 2014-08-24 YYYY-MM-DD		
+		feriados = response.holidays;
+		for(var contador = 0;contador<feriados.length;contador++){
+			// console.log("Respuesta: " + feriados[contador].name);		
+			// console.log("Respuesta: " + feriados[contador].date);	
+			var arregloFecha = feriados[contador].date.split("-");			
+			feriados[contador].date = parseInt(arregloFecha[2]);	
+			// Formatea las fechas
+		}
+		// }		
+		// 08/15/2008 YYYY-MM-DD to MM/DD/YYYY		
+	}
+    
+	return feriados;
+}
+
 function procesarFormulario(){
 	cantidadDiasMes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	
@@ -228,44 +266,6 @@ function procesarFormulario(){
 function validacionDatos(){
 	// Se ejecuta antes de Formatear las fechas
 	
-}
-
-function getWebService(paramPais, paramAnno, paramMes) {
-	var response = "";
-	var feriados = ""; 
-	var pais = "CR";
-	var anno = "2014";
-	var mes = "08";
-	var url = "https://holidayapi.com/v1/holidays?key=987767f3-2678-41bb-b09e-c57d37ecbe6e&country="+paramPais+"&year="+paramAnno+"&month="+paramMes;
-    var xhttp = new XMLHttpRequest();
-    // xhttp.open("GET", "https://holidayapi.com/v1/holidays?key=987767f3-2678-41bb-b09e-c57d37ecbe6e&country=CR&year=2014&month=08");
-	xhttp.open("GET", url, true);
-    // xhttp.setRequestHeader("Content-type", "application/json");
-	// console.log("TEst WS: " + xhttp.readyState());
-    xhttp.send();
-	 if(xhttp.readyState == 4 && xhttp.status == 200) {
-        response = JSON.parse(xhttp.responseText);
-		console.log("Respuesta: " + response);
-    }else{
-		// alert(xhttp.readyState); // 1
-		alert(xhttp.status); // 0
-		// if(xhttp.status == "0"){
-	    response = JSON.parse(xhttp.responseText);
-		
-		// 2014-08-24 YYYY-MM-DD		
-		feriados = response.holidays;
-		for(var contador = 0;contador<feriados.length;contador++){
-			// console.log("Respuesta: " + feriados[contador].name);		
-			// console.log("Respuesta: " + feriados[contador].date);	
-			var arregloFecha = feriados[contador].date.split("-");			
-			feriados[contador].date = parseInt(arregloFecha[2]);	
-			// Formatea las fechas
-		}
-		// }		
-		// 08/15/2008 YYYY-MM-DD to MM/DD/YYYY		
-	}
-    
-	return feriados;
 }
 
 function getWebServiceObj(){

@@ -1,3 +1,4 @@
+// Se procesa los datos de campo para fecha, dias y pais
 function procesarFormulario(){
 	cantidadDiasMes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	
@@ -27,14 +28,9 @@ function procesarFormulario(){
 		var salto = document.createElement("br");
 		body.appendChild(salto);
 	}
-	// crearTabla(1,2, fechaFmt, dias, pais);			
-	
-	// getWebService();
-	
-	var validarDias = isNaN(dias); //false
-	
 }
 
+// Se crea la tabla
 function crearTabla(filas, columnas, fecha, dias,pais){
 	// alert("crear tabla");
 	// Poner atencion a variable diafecha
@@ -157,11 +153,7 @@ function crearTabla(filas, columnas, fecha, dias,pais){
 							// feriados[contador1].date = 0;
 							if(celda.innerHTML  == feriados[contador1].date){
 							celda.style.backgroundColor = "rgb(255,165,0)"; 	
-							// celda.onmouseover = function(){
-							// celda.style.backgroundColor = '#f3f8aa';
-							// var span = document.createElement("SPAN");
-							// span.setAttribute('class', 'ABC');
-							// celda.appendChild(span);														
+																				
 							}		
 						}						
 						// alert(celda.innerHTML);
@@ -193,11 +185,7 @@ function crearTabla(filas, columnas, fecha, dias,pais){
 						for(var contador2 = 0;contador2<feriados.length;contador2++){													
 							if(contador -1  == feriados[contador2].date){
 							celda.style.backgroundColor = "rgb(255,165,0)"; 	
-							// celda.onmouseover = function(){
-							// celda.style.backgroundColor = '#f3f8aa';
-							// var span = document.createElement("SPAN");
-							// span.setAttribute('class', 'ABC');
-							// celda.appendChild(span);														
+																				
 							}		
 						}
 						// var limite =  parseInt(dias) +  parseInt(diafecha);

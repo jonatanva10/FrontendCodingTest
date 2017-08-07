@@ -1,3 +1,40 @@
+function procesarFormulario(){
+	cantidadDiasMes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	
+	var fecha = document.getElementById("fecha").value; 	
+	var dias = document.getElementById("dias").value; 
+	var pais = document.getElementById("pais").value; 
+	
+	console.log("Fecha: " + fecha);
+	
+	// Construir el formato fecha 08/15/2008 08/01/2008
+	var str = "How are you doing today?";
+	var res = fecha.split("/");
+	
+	// new Date(year, month, day, hours, minutes, seconds, milliseconds)
+	// JavaScript counts months from 0 to 11. January is 0. December is 11.
+	// res[0]
+	console.log("Mes: " + res[0]);
+	console.log("Dia: " + res[1]);
+	console.log("Anno: " + res[2]);
+	var fechaFmt = new Date(res[2],res[0]-1,res[1]);
+	
+	console.log("Fecha Real: " + fechaFmt);
+	for(var i = 0; i <= 1; i++ ){
+		// Puede crear varias tablas llamando a un mismo metodo
+		crearTabla(1,2, fechaFmt, dias, pais);	
+		var body = document.getElementsByTagName("body")[0];
+		var salto = document.createElement("br");
+		body.appendChild(salto);
+	}
+	// crearTabla(1,2, fechaFmt, dias, pais);			
+	
+	// getWebService();
+	
+	var validarDias = isNaN(dias); //false
+	
+}
+
 function crearTabla(filas, columnas, fecha, dias,pais){
 	// alert("crear tabla");
 	// Poner atencion a variable diafecha
@@ -224,43 +261,6 @@ function getWebService(paramPais, paramAnno, paramMes) {
 	}
     
 	return feriados;
-}
-
-function procesarFormulario(){
-	cantidadDiasMes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-	
-	var fecha = document.getElementById("fecha").value; 	
-	var dias = document.getElementById("dias").value; 
-	var pais = document.getElementById("pais").value; 
-	
-	console.log("Fecha: " + fecha);
-	
-	// Construir el formato fecha 08/15/2008 08/01/2008
-	var str = "How are you doing today?";
-	var res = fecha.split("/");
-	
-	// new Date(year, month, day, hours, minutes, seconds, milliseconds)
-	// JavaScript counts months from 0 to 11. January is 0. December is 11.
-	// res[0]
-	console.log("Mes: " + res[0]);
-	console.log("Dia: " + res[1]);
-	console.log("Anno: " + res[2]);
-	var fechaFmt = new Date(res[2],res[0]-1,res[1]);
-	
-	console.log("Fecha Real: " + fechaFmt);
-	for(var i = 0; i <= 1; i++ ){
-		// Puede crear varias tablas llamando a un mismo metodo
-		crearTabla(1,2, fechaFmt, dias, pais);	
-		var body = document.getElementsByTagName("body")[0];
-		var salto = document.createElement("br");
-		body.appendChild(salto);
-	}
-	// crearTabla(1,2, fechaFmt, dias, pais);			
-	
-	// getWebService();
-	
-	var validarDias = isNaN(dias); //false
-	
 }
 
 function validacionDatos(){
